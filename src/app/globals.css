@@ -1,26 +1,302 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-paper: #f4f0e5;
+  --color-paper-deep: #ebe5d6;
+  --color-ink: #171915;
+  --color-ink-soft: #4a4843;
+  --color-rule: #d4cfc3;
+  --color-accent: #244f76;
+  --color-accent-hover: #1b3d5c;
+  --color-digital: #9dc2d6;
+  --color-marker: #e5b94b;
+  --color-interface: #fcfcfa;
+  --color-focus-ring: #244f76;
+  --font-display: var(--font-frank-ruhl), "Times New Roman", serif;
+  --font-body: var(--font-assistant), "Segoe UI", sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--color-paper);
+  --color-paper-deep: var(--color-paper-deep);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-rule: var(--color-rule);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-digital: var(--color-digital);
+  --color-marker: var(--color-marker);
+  --color-interface: var(--color-interface);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Clear the sticky header (h-20 mobile / h-24 desktop) when jumping to anchors. */
+  scroll-padding-top: 7rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
 }
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-interface);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Cinematic hero stage — cool charcoal tuned to the generated frame's tones,
+   with a faint warm radial on the start side continuing the lamp light. */
+.hero-cinema {
+  background:
+    radial-gradient(70% 60% at 12% 100%, rgb(229 185 75 / 5%) 0%, transparent 60%),
+    radial-gradient(110% 85% at 80% 0%, rgb(157 194 214 / 6%) 0%, transparent 55%),
+    linear-gradient(170deg, #17181b 0%, #141417 55%, #121215 100%);
+}
+
+/* The default focus ring (accent blue) is invisible on the dark stage. */
+.hero-cinema :focus-visible {
+  outline-color: var(--color-digital);
+}
+
+/* Adaptive header, floating transparent over the dark hero. Scoped utility
+   overrides flip the chrome to light while at the top of the page. */
+.site-header.at-top .text-ink {
+  color: var(--color-paper);
+}
+
+.site-header.at-top .text-ink-soft {
+  color: #d9d2c1;
+}
+
+.site-header.at-top nav a:hover {
+  color: var(--color-digital);
+}
+
+.site-header.at-top .header-cta {
+  color: #e2eef7 !important;
+  border-color: rgb(157 194 214 / 60%) !important;
+  background: rgb(157 194 214 / 10%) !important;
+}
+
+.site-header.at-top :focus-visible {
+  outline-color: var(--color-digital);
+}
+
+/* Subtle static film grain over the cinematic stages — texture, not motion. */
+.hero-cinema::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* FinalCta backdrop as a plain class. Quoted-url arbitrary Tailwind utilities
+   proved fragile here (cache corruption + Tailwind scans even comments for
+   class candidates — never spell such a utility anywhere in source). */
+.finale-backdrop {
+  background-image: url("/media/sections/finale-paper.webp");
+  background-size: cover;
+  background-position: 50% 45%;
+}
+
+/* Generic dark-surface overrides (footer and other night surfaces). */
+.on-dark .text-ink {
+  color: var(--color-paper);
+}
+
+.on-dark .text-ink-soft {
+  color: #c9c2b2;
+}
+
+.on-dark .text-accent {
+  color: var(--color-digital);
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--color-digital);
+}
+
+/* A bright "paper" island inside a dark stage — restores ink colors. */
+.on-dark .on-light .text-ink {
+  color: var(--color-ink);
+}
+
+.on-dark .on-light .text-ink-soft {
+  color: var(--color-ink-soft);
+}
+
+.on-dark .on-light .text-accent {
+  color: var(--color-accent);
+}
+
+/* The lit paper gently levitates in the lamp light. */
+@keyframes paper-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.paper-float {
+  animation: paper-float 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paper-float {
+    animation: none !important;
+  }
+}
+
+/* A soft scrim that travels with the hero copy cluster — guarantees the
+   text and CTA never fight the scene's emissive areas at any viewport. */
+@media (min-width: 768px) {
+  .hero-copy {
+    position: relative;
+  }
+
+  .hero-copy::before {
+    content: "";
+    position: absolute;
+    inset: -48px -72px -36px -96px;
+    z-index: -1;
+    border-radius: 48px;
+    background: radial-gradient(
+      75% 85% at 62% 38%,
+      rgb(14 14 17 / 82%) 0%,
+      rgb(14 14 17 / 52%) 58%,
+      transparent 82%
+    );
+    pointer-events: none;
+  }
+}
+
+/* The hero slides under the transparent header. */
+.hero-pull {
+  /* header height + its 1px bottom border */
+  margin-top: -81px;
+  padding-top: 81px;
+}
+
+@media (min-width: 640px) {
+  .hero-pull {
+    margin-top: -97px;
+    padding-top: 97px;
+  }
+}
+
+/* Primary CTA shine sweep on hover. */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  inset-inline-start: -30%;
+  width: 34%;
+  transform: translateX(-260%) rotate(14deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 26%),
+    transparent
+  );
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  transform: translateX(420%) rotate(14deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-shine::after {
+    display: none;
+  }
+}
+
+/* Scroll reveal — content fades up once as it enters the viewport. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+
+
+

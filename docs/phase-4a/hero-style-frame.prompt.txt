@@ -1,0 +1,15 @@
+Cinematic still, 16:9, photoreal-painterly hybrid, editorial technology mood. A night study desk seen from a slightly elevated three-quarter view.
+
+RIGHT third of frame: a laptop in a dark graphite browser-shaped shell, its screen filled with ABSTRACT lecture density — a soft audio waveform ribbon, slide-like rectangular fragments, small empty timestamp shapes — controlled information overload, glowing in cool light blue (soft #9DC2D6 family). The screen is the only cool light source.
+
+CENTER: a single luminous satin ink-thread in deep blue (#244F76 family) rising off the waveform and arcing gracefully across the desk toward the paper — matte glow, ink-like ribbon, NOT neon, NOT laser.
+
+LEFT third: a warm matte paper sheet (#F4F0E5 family) lying in a soft desk-lamp pool of light, slightly rotated. The thread lays itself onto the paper as indented hierarchy strokes: one long heading stroke, two shorter sub-strokes, three short bullet strokes — abstract ink marks only, no letters. EXACTLY ONE stroke is study-marker yellow (#E5B94B); no other yellow anywhere in the frame.
+
+UPPER-LEFT third of the frame: calm, dark, empty negative space reserved for interface copy — keep it clean and free of objects.
+
+Lighting: a single warm practical desk-lamp key light pooling on the paper, cool screen fill from the right, soft matte shadows, gentle falloff into a near-black warm charcoal room with soft bokeh. The paper is the brightest surface in the frame.
+
+Materials: paper with visible tooth, matte dark wood desk, soft-touch graphite laptop shell; only the screen and the thread are emissive. Architectural composition, calm cinematic studio lighting, premium matte materials, intentional negative space.
+
+Negative requirements: no text, no readable writing, no Hebrew, no letters, no numbers, no logos, no platform branding, no fake UI labels, no fake screenshot, no neon, no purple, no holograms, no AI brain, no robots, no glowing SaaS dashboard, no childish clay-toy appearance, no people, no hands.

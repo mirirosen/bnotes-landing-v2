@@ -1,0 +1,12 @@
+Wide 16:9 cinematic still. A student's study desk at night, slightly elevated three-quarter view. Editorial technology mood, photoreal-painterly hybrid, premium matte materials, architectural composition.
+
+COMPOSITION (strict):
+- RIGHT third: a laptop whose screen shows ONLY abstract shapes — a glowing soft-blue audio waveform ribbon, blurry featureless rectangles suggesting presentation slides, tiny empty rounded pills. The shapes are pure geometry: zero characters, zero words, zero numbers, zero icons. Cool pale-blue glow.
+- CENTER: one single luminous ribbon of deep-blue ink rising out of the waveform, arcing smoothly across the desk toward the paper. Satin matte glow, like wet ink suspended in air. Not neon, not laser, not lightning.
+- LEFT third: one warm cream paper sheet in a soft desk-lamp light pool, slightly rotated. The ink ribbon touches the page and continues as flat ink strokes forming an indented outline: one long stroke, two medium strokes, three short strokes. Abstract brush strokes only — they must NOT look like handwriting or letters.
+- Exactly ONE of the short strokes is highlighter-yellow. Nothing else in the image is yellow.
+- UPPER-LEFT quarter: deep dark empty negative space — no objects, no glow, reserved for interface copy.
+
+LIGHT & MATERIAL: single warm desk-lamp pool on the paper (brightest surface in frame), cool screen fill from the right, matte shadows, near-black warm charcoal room with soft bokeh depth. Paper has visible tooth; desk is matte dark wood; laptop shell is soft graphite. Only the screen and the ink ribbon emit light.
+
+ABSOLUTE PROHIBITIONS: any text, any letters, any numbers, any handwriting, any readable code, any books with printed spines, any sticky notes, any posters, any clocks, any keyboards with printed keys, any logos, any UI labels, any people, any hands, any neon, any purple, any holograms, any robots.

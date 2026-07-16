@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated QA artifacts (Playwright HTML report bundles) and vendored
+    // agent-skill scripts are not application code.
+    "docs/qa-artifacts/**",
+    ".agents/**",
+    ".playwright-mcp/**",
   ]),
 ]);
 

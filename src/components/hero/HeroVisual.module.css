@@ -1,0 +1,262 @@
+/*
+ * "שולחן הלימוד: החוט שמתארגן" — cinematic night-desk hero.
+ * Desktop: the approved Phase 4A frame + Phase 4B motion, full-bleed inside a
+ * vertical camera settle; flow labels stay crisp HTML on top.
+ * Mobile: a story-cropped 4:3 cut of the same scene (tiny mp4 + poster).
+ * Assets are referenced inside width media queries so each device downloads
+ * only its own media. Blueprint: docs/reference-analysis/selected-blueprint-and-phase4a.md
+ */
+
+.root {
+  width: 100%;
+}
+
+/* ─── Desktop scene — full-bleed cinema screen ─── */
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: clamp(420px, 54vh, 600px);
+  overflow: hidden;
+  /* Graceful fallback if the frame fails to load: the dark stage. */
+  background:
+    radial-gradient(85% 120% at 82% 0%, rgb(157 194 214 / 6%) 0%, transparent 55%),
+    linear-gradient(170deg, #16171a 0%, #131316 50%, #121013 100%);
+  opacity: 0;
+  animation: sceneIn 1s ease 0.05s forwards;
+}
+
+@keyframes sceneIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Feather the scene into the stage above and below —
+   the world belongs to the page instead of sitting in a card. */
+.scene::before,
+.mobileScene::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 90px;
+  z-index: 5;
+  background: linear-gradient(180deg, #141417 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.scene::after,
+.mobileScene::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 110px;
+  z-index: 5;
+  background: linear-gradient(180deg, transparent 0%, rgb(20 20 23 / 55%) 55%, #17171a 100%);
+  pointer-events: none;
+}
+
+/* The single authored camera move: a gentle vertical settle into rest.
+   (Vertical-only — a scale here would push the full-bleed scene beyond the
+   viewport edges; the video layer carries the living motion.) */
+.sceneCamera {
+  position: absolute;
+  inset: 0;
+  animation: cameraSettle 6.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+@keyframes cameraSettle {
+  from {
+    transform: translateY(1.4%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Poster frames. Image URLs live inside width media queries below so each
+   device fetches only its own asset. Position keeps the story band in view:
+   waveform (top-right) → ribbon → paper. */
+.sceneFrame,
+.mobileSceneFrame {
+  position: absolute;
+  inset: 0;
+  background-position: 50% 55%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* The motion layer (client-gated <video>) sits above the poster frame. */
+.sceneVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 55%;
+  transition: opacity 1.6s ease;
+}
+
+/* After the authored camera move ends, the video fades away and the scene
+   rests on the composed wide poster frame beneath it. */
+.sceneVideoResting {
+  opacity: 0;
+}
+
+/* ─── Mobile scene — story-cropped 4:3 ─── */
+
+.mobileScene {
+  position: relative;
+  width: 100%;
+  /* Native portrait scene — the story reads top-to-bottom like a thumb scroll. */
+  aspect-ratio: 3 / 4;
+  max-height: 500px;
+  overflow: hidden;
+  background:
+    radial-gradient(85% 120% at 82% 0%, rgb(157 194 214 / 6%) 0%, transparent 55%),
+    linear-gradient(170deg, #16171a 0%, #131316 50%, #121013 100%);
+  opacity: 0;
+  animation: sceneIn 1s ease 0.05s forwards;
+}
+
+.mobileScene::before {
+  height: 56px;
+}
+
+.mobileScene::after {
+  height: 70px;
+}
+
+/* ─── Diegetic flow labels ─── */
+
+.flowBar {
+  position: absolute;
+  bottom: 22px;
+  inset-inline: 0;
+  margin-inline: auto;
+  width: fit-content;
+  max-width: 94%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid rgb(244 240 229 / 12%);
+  background: rgb(16 13 9 / 62%);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #d9d2c1;
+  z-index: 6;
+  white-space: nowrap;
+  opacity: 0;
+  animation: inkRow 0.9s ease 2.2s forwards;
+}
+
+.flowArrow {
+  color: var(--color-digital);
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+@keyframes inkRow {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Desktop vs mobile switch ─── */
+
+.animatedRoot {
+  display: none;
+}
+
+.staticRoot {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .staticRoot {
+    display: none;
+  }
+  .animatedRoot {
+    display: block;
+  }
+  /* Desktop frame fetched only at desktop widths. */
+  .sceneFrame {
+    background-image: url("/media/hero/hero-frame.webp");
+  }
+
+  /* The whole visual becomes the section's backdrop: the scene stretches
+     across the full stage and the copy floats above it. */
+  .root {
+    position: absolute;
+    inset: 0;
+  }
+
+  .animatedRoot,
+  .scene {
+    height: 100%;
+    max-height: none;
+  }
+
+  /* Stronger top scrim: the copy sits over the scene's upper band, with an
+     extra radial pool behind the copy cluster (inline-start top in RTL) so
+     the laptop's bright screen never fights the text — while the paper and
+     ribbon below stay luminous. */
+  .scene::before {
+    height: 66%;
+    background:
+      radial-gradient(
+        58% 95% at 84% 0%,
+        rgb(15 15 18 / 90%) 0%,
+        rgb(15 15 18 / 60%) 52%,
+        transparent 78%
+      ),
+      linear-gradient(
+        180deg,
+        rgb(17 17 20 / 86%) 0%,
+        rgb(17 17 20 / 42%) 48%,
+        transparent 100%
+      );
+  }
+
+  .flowBar {
+    bottom: 34px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Mobile poster fetched only at phone widths. */
+  .mobileSceneFrame {
+    background-image: url("/media/hero/hero-frame-portrait.webp");
+  }
+
+  .flowBar {
+    gap: 6px;
+    padding: 6px 12px;
+    font-size: 0.6rem;
+    bottom: 14px;
+  }
+}
+
+/* ─── Reduced motion: the composed resting frame, instantly ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  .scene,
+  .mobileScene,
+  .sceneCamera,
+  .flowBar {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .sceneCamera {
+    transform: none !important;
+  }
+}

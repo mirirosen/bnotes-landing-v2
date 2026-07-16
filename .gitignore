@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# QA evidence & raw generated media (heavy, regenerable — docs stay in .md)
+/docs/qa-artifacts/
+/docs/phase-4a/*.png
+/docs/phase-4a/*.mp4
+/.playwright-mcp/
