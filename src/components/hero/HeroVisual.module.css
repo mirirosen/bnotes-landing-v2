@@ -145,9 +145,10 @@
   border-radius: 999px;
   border: 1px solid rgb(244 240 229 / 12%);
   background: rgb(16 13 9 / 62%);
-  font-size: 0.68rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  color: #d9d2c1;
+  letter-spacing: 0.02em;
+  color: #e3ddce;
   z-index: 6;
   white-space: nowrap;
   opacity: 0;

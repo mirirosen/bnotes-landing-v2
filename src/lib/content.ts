@@ -193,6 +193,13 @@ export const pricing = {
   priceLabel: "₪9.90",
   priceDetail: "לחודש, לאחר תקופת ההתנסות",
   cancelDetail: "ביטול בכל עת",
+  // Verified claims only — each appears elsewhere on the page (demo/FAQ).
+  valuePoints: [
+    "תמלול חי במהלך ההרצאה",
+    "סיכום מסודר בסיום כל הקלטה",
+    "ייצוא ל-Word, PDF ו-NotebookLM",
+    "עברית ואנגלית",
+  ],
 } as const;
 
 export const privacy = {

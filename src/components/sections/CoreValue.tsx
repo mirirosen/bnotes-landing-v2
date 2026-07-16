@@ -4,10 +4,15 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { coreValue } from "@/lib/content";
 
+/*
+ * The mid-page dark anchor: raw noise vs. structured summary on a night
+ * stage. The raw-transcript card belongs to the dark; the structured card is
+ * the single lit paper island (.on-light restores ink inside .on-dark).
+ */
 export function CoreValue() {
   return (
-    <section className="border-b border-rule py-16 sm:py-20 lg:py-24">
-      <Container>
+    <section className="hero-cinema on-dark relative overflow-hidden border-b border-[#2a2a2e] py-16 sm:py-20 lg:py-24">
+      <Container className="relative z-10">
         <SectionHeading
           eyebrow={coreValue.eyebrow}
           title={coreValue.title}
@@ -16,7 +21,7 @@ export function CoreValue() {
 
         {/* The transformation as a physical object: tangled thread → laid lines */}
         <Reveal className="mt-10">
-          <div className="relative overflow-hidden rounded-2xl border border-rule shadow-[0_24px_70px_rgb(23_25_21/12%)]">
+          <div className="relative overflow-hidden rounded-2xl border border-[#fcfcfa]/12 shadow-[0_30px_80px_rgb(0_0_0/45%)]">
             {/* eslint-disable-next-line @next/next/no-img-element -- static asset */}
             <img
               src="/media/sections/chaos-to-order.webp"
@@ -35,8 +40,8 @@ export function CoreValue() {
         </Reveal>
 
         <div className="mt-8 grid items-stretch gap-6 lg:grid-cols-[1fr_auto_1fr]">
-          {/* Before: the raw noise — dark, like the lecture screen */}
-          <div className="flex h-full flex-col rounded-2xl border border-[#2b2f36] bg-[#181b20] p-6 shadow-[0_0_40px_rgb(157_194_214/8%)] sm:p-8">
+          {/* Before: the raw noise — part of the night */}
+          <div className="flex h-full flex-col rounded-2xl border border-[#2b2f36] bg-[#181b20]/90 p-6 shadow-[0_0_40px_rgb(157_194_214/8%)] sm:p-8">
             <p className="text-sm font-semibold text-digital">
               {coreValue.before.label}
             </p>
@@ -55,17 +60,14 @@ export function CoreValue() {
           </div>
 
           {/* The thread carries the noise into structure */}
-          <div
-            aria-hidden="true"
-            className="hidden items-center lg:flex"
-          >
-            <span className="inline-flex size-12 items-center justify-center rounded-full border border-accent/30 bg-accent/10 text-2xl text-accent shadow-[0_0_20px_rgb(36_79_118/20%)]">
+          <div aria-hidden="true" className="hidden items-center lg:flex">
+            <span className="inline-flex size-12 items-center justify-center rounded-full border border-digital/40 bg-digital/10 text-2xl text-digital shadow-[0_0_20px_rgb(157_194_214/25%)]">
               ←
             </span>
           </div>
 
-          {/* After: the structured summary — warm lit paper */}
-          <div className="flex h-full flex-col rounded-2xl border border-rule bg-interface p-6 shadow-[0_18px_50px_rgb(229_185_75/10%),0_4px_14px_rgb(23_25_21/6%)] sm:p-8">
+          {/* After: the structured summary — the lit paper island */}
+          <div className="on-light flex h-full flex-col rounded-2xl border border-[#f4f0e5]/25 bg-interface p-6 shadow-[0_0_90px_rgb(244_240_229/14%),0_30px_70px_rgb(0_0_0/45%)] sm:p-8">
             <p className="text-sm font-semibold text-accent">{coreValue.after.label}</p>
             <div className="mt-4 border-e-2 border-accent ps-4 pe-4">
               <p className="font-display text-lg font-bold text-ink">

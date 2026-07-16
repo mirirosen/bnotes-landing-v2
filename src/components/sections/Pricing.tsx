@@ -45,12 +45,28 @@ export function Pricing() {
               {pricing.priceLabel}
             </p>
             <p className="mt-2 text-sm text-ink-soft">{pricing.priceDetail}</p>
-            <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft">
-              <span aria-hidden="true" className="text-accent">
-                ✓
-              </span>
-              {pricing.cancelDetail}
-            </p>
+
+            {/* The value, right next to the button — every line is verified
+                elsewhere on the page (product demo / FAQ). */}
+            <ul className="mx-auto mt-5 flex max-w-xs flex-col gap-2 text-start">
+              {pricing.valuePoints.map((point) => (
+                <li
+                  key={point}
+                  className="flex items-start gap-2 text-sm font-medium text-ink-soft"
+                >
+                  <span aria-hidden="true" className="mt-0.5 text-accent">
+                    ✓
+                  </span>
+                  {point}
+                </li>
+              ))}
+              <li className="flex items-start gap-2 text-sm font-medium text-ink-soft">
+                <span aria-hidden="true" className="mt-0.5 text-accent">
+                  ✓
+                </span>
+                {pricing.cancelDetail}
+              </li>
+            </ul>
 
             <Button
               href={links.chromeStore}

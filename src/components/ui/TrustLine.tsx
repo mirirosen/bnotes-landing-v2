@@ -13,12 +13,19 @@ export function TrustLine({
   const dotColor = tone === "light" ? "text-[#5a5344]" : "text-rule";
 
   return (
+    // The accessible content is the aria-label; the two inner variants are
+    // presentation-only (one per breakpoint) so tech that reads raw text
+    // doesn't encounter the line twice.
     <div className={className} role="note" aria-label={trustLine}>
-      <p className={`text-center text-xs leading-relaxed sm:hidden ${textColor}`}>
+      <p
+        aria-hidden="true"
+        className={`text-center text-xs leading-relaxed sm:hidden ${textColor}`}
+      >
         {trustLineMobile}
       </p>
 
       <p
+        aria-hidden="true"
         className={`hidden items-center gap-2 text-center text-sm sm:flex ${textColor}`}
       >
         {parts.map((part, index) => (
