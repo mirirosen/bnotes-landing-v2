@@ -1,4 +1,8 @@
 @import "tailwindcss";
+/* Docs mention utility class names in prose — keep them out of the class
+   scan so a typo in documentation can never break (or bloat) the build. */
+@source not "../../docs";
+@source not "../../.agents";
 
 :root {
   --color-paper: #f4f0e5;
@@ -110,10 +114,18 @@ summary::-webkit-details-marker {
   color: var(--color-digital);
 }
 
+/* Over the dark hero the CTA sits right on the scene's lamp head — a whisper
+   of dark glass separates it cleanly from the bright bokeh behind it. */
 .site-header.at-top .header-cta {
-  color: #e2eef7 !important;
-  border-color: rgb(157 194 214 / 60%) !important;
-  background: rgb(157 194 214 / 10%) !important;
+  color: #f0ede3 !important;
+  border-color: rgb(244 240 229 / 45%) !important;
+  background: rgb(20 20 23 / 30%) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(3px);
+}
+
+.site-header.at-top .header-cta:hover {
+  background: rgb(244 240 229 / 12%) !important;
 }
 
 .site-header.at-top :focus-visible {
@@ -185,8 +197,27 @@ summary::-webkit-details-marker {
   animation: paper-float 7s ease-in-out infinite;
 }
 
+/* The shadow the floating paper casts: breathes in counter-phase with
+   paper-float — narrower and lighter when the paper is at its highest. */
+@keyframes shadow-breathe {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(0.93);
+    opacity: 0.7;
+  }
+}
+
+.shadow-breathe {
+  animation: shadow-breathe 7s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .paper-float {
+  .paper-float,
+  .shadow-breathe {
     animation: none !important;
   }
 }

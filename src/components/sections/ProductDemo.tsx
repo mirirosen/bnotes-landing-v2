@@ -19,7 +19,7 @@ export function ProductDemo() {
           body={productDemo.body}
         />
 
-        <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_1.05fr]">
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-start">
           <Reveal className="order-1 lg:order-none">
             <ul className="flex flex-col gap-4">
               {productDemo.highlights.map((item, index) => (

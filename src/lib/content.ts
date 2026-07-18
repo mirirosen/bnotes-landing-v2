@@ -190,7 +190,9 @@ export const pricing = {
   title: "תוכנית אחת, פשוטה וברורה",
   trialLabel: "7 ימי התנסות",
   trialDetail: "ללא תשלום",
-  priceLabel: "₪9.90",
+  // U+200A hair space after ₪ — in the display serif the glyph otherwise
+  // reads as the letter ש against the digits.
+  priceLabel: "₪ 9.90",
   priceDetail: "לחודש, לאחר תקופת ההתנסות",
   cancelDetail: "ביטול בכל עת",
   // Verified claims only — each appears elsewhere on the page (demo/FAQ).

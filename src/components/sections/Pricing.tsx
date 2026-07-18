@@ -13,19 +13,25 @@ export function Pricing() {
   return (
     <section
       id="pricing"
-      className="hero-cinema on-dark relative overflow-hidden border-b border-[#2a2a2e] py-16 sm:py-20 lg:py-24"
+      className="hero-cinema on-dark relative overflow-hidden border-b border-[#2a2a2e] py-16 sm:py-20 lg:py-20"
     >
-      {/* lamp cone falling onto the card */}
+      {/* lamp light falling onto the card: a warm blurred cone (clip-path
+          triangle whose soft edges come from the blur applied after the clip)
+          plus a faint source glow at its origin */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-16 z-0 mx-auto h-[460px] max-w-[620px] bg-[radial-gradient(50%_62%_at_50%_0%,rgb(244_240_229/17%),transparent_76%)]"
+        className="pointer-events-none absolute inset-x-0 top-2 z-0 mx-auto h-[560px] w-[680px] max-w-full bg-[linear-gradient(180deg,rgb(229_185_75/16%),rgb(229_185_75/6%)_55%,transparent_85%)] blur-[40px] [clip-path:polygon(50%_-8%,12%_104%,88%_104%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 mx-auto h-24 w-64 rounded-[100%] bg-[#e5b94b]/15 blur-3xl"
       />
 
       <Container className="relative z-10">
         <SectionHeading eyebrow={pricing.eyebrow} title={pricing.title} align="center" />
 
-        <Reveal className="mx-auto mt-12 max-w-md">
-          <div className="on-light paper-float relative overflow-hidden rounded-3xl border border-[#f4f0e5]/25 bg-interface p-8 pt-10 text-center shadow-[0_0_110px_rgb(244_240_229/15%),0_45px_90px_rgb(0_0_0/55%)]">
+        <Reveal className="mx-auto mt-10 max-w-md">
+          <div className="on-light paper-float relative overflow-hidden rounded-3xl border border-[#f4f0e5]/25 bg-interface p-8 pt-10 text-center shadow-[0_-1px_0_rgb(229_185_75/35%),0_0_110px_rgb(244_240_229/15%),0_45px_90px_rgb(0_0_0/55%)]">
             {/* the thread, resting on top of the price card */}
             <div
               aria-hidden="true"
@@ -80,10 +86,15 @@ export function Pricing() {
             </Button>
           </div>
 
-          {/* the light the paper throws on the desk */}
+          {/* grounding: the shadow the floating card casts, breathing in
+              counter-phase with paper-float, over the light it throws */}
           <div
             aria-hidden="true"
-            className="mx-auto mt-4 h-8 w-2/3 rounded-[100%] bg-[#f4f0e5]/10 blur-xl"
+            className="shadow-breathe mx-auto -mt-1 h-6 w-1/2 rounded-[100%] bg-black/50 blur-lg"
+          />
+          <div
+            aria-hidden="true"
+            className="mx-auto mt-1 h-8 w-2/3 rounded-[100%] bg-[#f4f0e5]/10 blur-xl"
           />
         </Reveal>
       </Container>
