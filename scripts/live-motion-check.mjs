@@ -56,8 +56,7 @@ check("pricing float+shadow animations", pricingAnim.float === "paper-float" && 
 // 5. Pricing lamp cone visible: sample luminance above the card vs stage corner
 const cone = await page.evaluate(async () => {
   const sec = document.querySelector("#pricing");
-  const r = sec.getBoundingClientRect();
-  // compare pixels via an offscreen canvas is not possible on live DOM —
+  // comparing pixels via an offscreen canvas is not possible on live DOM —
   // instead verify the cone element exists with a real gradient + blur
   const layers = [...sec.querySelectorAll("div[aria-hidden]")].map((d) => {
     const cs = getComputedStyle(d);

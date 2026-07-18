@@ -20,8 +20,10 @@ export function ProductDemo() {
         />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-start">
-          <Reveal className="order-1 lg:order-none">
-            <ul className="flex flex-col gap-4">
+          <Reveal className="order-1 lg:order-none lg:self-stretch">
+            {/* Distribute the cards across the panel's full height so the
+                night stage has no dead gap below the column. */}
+            <ul className="flex flex-col gap-4 lg:h-full lg:justify-between">
               {productDemo.highlights.map((item, index) => (
                 <li
                   key={item.title}
