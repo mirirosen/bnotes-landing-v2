@@ -262,13 +262,19 @@ summary::-webkit-details-marker {
   }
 }
 
-/* Scroll reveal — content fades up once as it enters the viewport. */
+/* Scroll reveal — content fades up once as it enters the viewport.
+   Fail-visible: the base .reveal class carries only the transition; the
+   hidden state is a separate class that client JS applies once the
+   IntersectionObserver is proven alive (see Reveal.tsx). */
 .reveal {
-  opacity: 0;
-  transform: translateY(16px);
   transition:
     opacity 0.7s ease,
     transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(16px);
 }
 
 .reveal-in {
@@ -277,7 +283,8 @@ summary::-webkit-details-marker {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .reveal-hidden {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;

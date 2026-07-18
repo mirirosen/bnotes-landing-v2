@@ -19,7 +19,7 @@ export function TrustLine({
     <div className={className} role="note" aria-label={trustLine}>
       <p
         aria-hidden="true"
-        className={`text-center text-xs leading-relaxed sm:hidden ${textColor}`}
+        className={`text-center text-[13px] leading-relaxed [text-wrap:balance] sm:hidden ${textColor}`}
       >
         {trustLineMobile}
       </p>

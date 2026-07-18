@@ -8,15 +8,15 @@ import { faq } from "@/lib/content";
  */
 export function Faq() {
   return (
-    <section id="faq" className="border-b border-rule py-16 sm:py-20 lg:py-24">
+    <section id="faq" className="border-b border-rule py-14 sm:py-16 lg:py-20">
       <Container>
         <SectionHeading eyebrow={faq.eyebrow} title={faq.title} />
 
-        <div className="mt-10 flex flex-col gap-3">
+        <div className="mt-8 flex flex-col gap-3">
           {faq.items.map((item) => (
             <details
               key={item.question}
-              className="group rounded-xl border border-rule bg-interface px-5 py-2.5 shadow-sm transition-colors open:border-accent/40 open:shadow-[0_12px_34px_rgb(36_79_118/8%)]"
+              className="group rounded-xl border border-paper-deep bg-interface px-5 py-2.5 shadow-[0_1px_2px_rgb(23_25_21/5%),0_4px_14px_rgb(23_25_21/4%)] transition-colors open:border-accent/40 open:shadow-[0_12px_34px_rgb(36_79_118/8%)]"
             >
               {/* summary carries the vertical padding so the touch target is ≥44px */}
               <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-4 py-2.5 font-display text-lg text-ink">

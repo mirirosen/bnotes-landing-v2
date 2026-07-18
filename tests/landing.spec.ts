@@ -83,7 +83,17 @@ test.describe("primary CTA", () => {
     const label =
       testInfo.project.name === "mobile" ? "התקנה" : /התקינו את B Notes ב־Chrome/;
     const headerCta = page.locator("header").getByRole("link", { name: label });
-    await expect(headerCta).toBeVisible();
+
+    if (testInfo.project.name === "mobile") {
+      // Over the dark hero the mobile header CTA is intentionally hidden
+      // (the hero CTA sits right below it); it appears once the header
+      // switches to paper-glass on scroll.
+      await expect(headerCta).toBeHidden();
+      await page.mouse.wheel(0, 400);
+      await expect(headerCta).toBeVisible();
+    } else {
+      await expect(headerCta).toBeVisible();
+    }
     await expect(headerCta).toHaveAttribute("href", CHROME_STORE_URL);
   });
 

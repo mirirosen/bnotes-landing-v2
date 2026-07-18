@@ -18,7 +18,7 @@ export function Pricing() {
       {/* lamp cone falling onto the card */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-16 z-0 mx-auto h-[460px] max-w-[620px] bg-[radial-gradient(50%_62%_at_50%_0%,rgb(244_240_229/13%),transparent_72%)]"
+        className="pointer-events-none absolute inset-x-0 top-16 z-0 mx-auto h-[460px] max-w-[620px] bg-[radial-gradient(50%_62%_at_50%_0%,rgb(244_240_229/17%),transparent_76%)]"
       />
 
       <Container className="relative z-10">

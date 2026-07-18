@@ -52,7 +52,7 @@ export function ProductDemo() {
           <Reveal delay={120}>
             {/* 3D floating panel: tilted in perspective, straightens on hover */}
             <div className="group mx-auto max-w-md [perspective:1400px]">
-              <div className="overflow-hidden rounded-2xl border border-digital/25 bg-[#14161a] shadow-[0_0_90px_rgb(157_194_214/22%),0_40px_80px_rgb(0_0_0/50%)] transition-transform duration-700 ease-out [transform:rotateY(9deg)_rotateX(2deg)] group-hover:[transform:rotateY(0deg)_rotateX(0deg)]">
+              <div className="overflow-hidden rounded-2xl border border-digital/25 bg-[#14161a] shadow-[0_0_90px_rgb(252_252_250/16%),0_40px_80px_rgb(0_0_0/50%)] transition-transform duration-700 ease-out [transform:rotateY(9deg)_rotateX(2deg)] group-hover:[transform:rotateY(0deg)_rotateX(0deg)]">
                 <div className="flex items-center gap-2 border-b border-[#2b2f36] bg-[#191c21] px-4 py-3">
                   <span className="size-2 rounded-full bg-digital opacity-60" />
                   <span className="size-2 rounded-full bg-digital opacity-40" />
@@ -68,13 +68,13 @@ export function ProductDemo() {
                   alt={productDemo.screenshotAlt}
                   width={687}
                   height={739}
-                  className="block w-full"
+                  className="block w-full saturate-[.92]"
                 />
               </div>
               {/* light the panel throws on the desk */}
               <div
                 aria-hidden="true"
-                className="mx-auto mt-2 h-6 w-3/4 rounded-[100%] bg-digital/20 blur-xl"
+                className="mx-auto mt-2 h-6 w-3/4 rounded-[100%] bg-[#fcfcfa]/15 blur-xl"
               />
             </div>
             <p className="mt-4 text-center text-sm font-medium text-[#c9c2b2]">

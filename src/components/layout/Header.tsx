@@ -57,7 +57,13 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             showChromeIcon
-            className="header-cta max-sm:[&_svg]:hidden !min-h-10 !rounded-lg !border !border-accent/35 !bg-transparent !px-3 !py-1.5 !text-xs !text-accent !shadow-none hover:!bg-accent/8 sm:!min-h-11 sm:!rounded-xl sm:!border sm:!border-[#9dc2d6]/30 sm:!bg-gradient-to-b sm:!from-[#2e618e] sm:!to-[#1e4266] sm:!px-5 sm:!text-sm sm:!text-interface sm:!shadow-[0_6px_22px_rgb(36_79_118/45%),inset_0_1px_0_rgb(255_255_255/14%)] sm:hover:!from-[#356c9c] sm:hover:!to-[#245078]"
+            className={`header-cta max-sm:[&_svg]:hidden !min-h-10 !rounded-lg !px-3 !py-1.5 !text-xs sm:!min-h-11 sm:!rounded-xl sm:!px-5 sm:!text-sm ${
+              atTop
+                ? // Over the dark hero: one loud CTA is enough (the hero's own).
+                  // The header copy goes quiet-outline on desktop, hidden on mobile.
+                  "max-sm:hidden sm:!border sm:!border-[#f4f0e5]/40 sm:!bg-none sm:!bg-transparent sm:!text-[#f4f0e5] sm:!shadow-none sm:hover:!bg-[#f4f0e5]/10"
+                : "!border !border-accent/35 !bg-transparent !text-accent !shadow-none hover:!bg-accent/8 sm:!border sm:!border-[#9dc2d6]/30 sm:!bg-gradient-to-b sm:!from-[#2e618e] sm:!to-[#1e4266] sm:!text-interface sm:!shadow-[0_6px_22px_rgb(36_79_118/45%),inset_0_1px_0_rgb(255_255_255/14%)] sm:hover:!from-[#356c9c] sm:hover:!to-[#245078]"
+            }`}
           >
             <span className="hidden sm:inline">{cta.primary}</span>
             <span className="sm:hidden">{cta.headerMobile}</span>

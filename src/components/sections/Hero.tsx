@@ -21,7 +21,7 @@ export function Hero() {
             {hero.headline}
           </h1>
 
-          <div className="mt-5 flex flex-col items-start gap-2.5 sm:mt-6 sm:flex-row sm:items-center sm:gap-4">
+          <div className="mt-5 flex flex-col items-start gap-2.5 sm:mt-6 sm:flex-row sm:items-center sm:gap-7">
             <Button
               href={links.chromeStore}
               target="_blank"

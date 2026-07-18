@@ -79,7 +79,7 @@ export function CoreValue() {
                     key={bullet}
                     className={`text-sm ${
                       index === 0
-                        ? "rounded bg-marker/25 px-2 py-0.5 font-medium text-ink"
+                        ? "rounded bg-marker/45 px-2 py-0.5 font-medium text-ink"
                         : "text-ink-soft"
                     }`}
                   >
