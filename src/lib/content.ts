@@ -114,6 +114,10 @@ export const productDemo = {
   quizLabel: "מבחן תרגול",
   quizScreenshotAlt:
     "בלוק 'למד מההרצאה הזו' בתוסף B Notes: כפתורי בניית מבחן תרגול והורדתו, ושאלה אמריקאית ראשונה שנענתה נכון עם הדגשה ירוקה והסבר מתוך ההרצאה",
+  // Real line from the live-recording screenshot's own transcript (group
+  // theory lecture) — typed out by TypedCaption under that panel only.
+  liveCaptionSample:
+    "תכונה חשובה של קבוצות: אין חשיבות לסדר האיברים לסדר האיברים ברוב — זו בדיוק אותה קבוצה.",
 } as const;
 
 // Consumed by ProductDemo.tsx's numbered step list — title only, no eyebrow/

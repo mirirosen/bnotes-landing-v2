@@ -224,9 +224,23 @@ summary::-webkit-details-marker {
   animation: shadow-breathe 7s ease-in-out infinite;
 }
 
+/* The trailing cursor on TypedCaption — only rendered while typing is in
+   progress (component removes it once the line is fully revealed, and
+   never renders it at all under reduced motion). */
+@keyframes blink-cursor {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink-cursor {
+  animation: blink-cursor 0.9s step-end infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .paper-float,
-  .shadow-breathe {
+  .shadow-breathe,
+  .blink-cursor {
     animation: none !important;
   }
 }

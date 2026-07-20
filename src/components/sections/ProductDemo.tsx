@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TypedCaption } from "@/components/ui/TypedCaption";
 import { howItWorks, productDemo } from "@/lib/content";
 
 /*
@@ -58,6 +59,13 @@ export function ProductDemo() {
                 <div
                   aria-hidden="true"
                   className="mx-auto mt-2 h-5 w-3/4 rounded-[100%] bg-[#fcfcfa]/12 blur-xl"
+                />
+                {/* Types out once, the first time this scrolls into view —
+                    a real line from this exact screenshot's own transcript,
+                    proving "live" without animating inside the static PNG. */}
+                <TypedCaption
+                  text={productDemo.liveCaptionSample}
+                  className="mt-1.5 block text-center text-[0.68rem] leading-relaxed text-digital"
                 />
               </div>
 
