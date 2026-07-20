@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "bnotes-ai",
+    "site": "bnotes-live",
     "public": "out",
     "ignore": ["firebase.json", "**/.*"],
     "cleanUrls": true,
