@@ -107,7 +107,6 @@ export const transformationFlow = {
 
 export const productDemo = {
   eyebrow: "המוצר בפעולה",
-  title: "כך נראה B Notes בזמן הרצאה",
   realLabel: "צילומי מסך אמיתיים מתוך התוסף",
   liveLabel: "תמלול חי",
   liveScreenshotAlt:
@@ -115,56 +114,15 @@ export const productDemo = {
   quizLabel: "מבחן תרגול",
   quizScreenshotAlt:
     "בלוק 'למד מההרצאה הזו' בתוסף B Notes: כפתורי בניית מבחן תרגול והורדתו, ושאלה אמריקאית ראשונה שנענתה נכון עם הדגשה ירוקה והסבר מתוך ההרצאה",
-  // Every highlight below is visible in the real capture shown beside it.
-  highlights: [
-    {
-      title: "תמלול חי תוך כדי ההרצאה",
-      detail: "הטקסט נכתב על המסך בזמן אמת, בעברית, בלי לעצור את הצפייה.",
-    },
-    {
-      title: "הכול נשמר ומסודר",
-      detail: "היסטוריית הקלטות, שיתוף ל-WhatsApp ושאלות על החומר — במקום אחד.",
-    },
-    {
-      title: "שליטה מלאה בהקלטה",
-      detail: "הקלטה, השהיה ועצירה בלחיצה, עם יתרת הדקות תמיד מול העיניים.",
-    },
-  ],
 } as const;
 
-export const coreValue = {
-  eyebrow: "לא עוד תמלול גולמי",
-  title: "ההבדל הוא במבנה, לא רק בטקסט",
-  body: "תמלול גולמי הוא רצף מילים רציף שקשה לחזור אליו. B Notes בונה ממנו סיכום עם נושאים, כותרות ותת־כותרות — משהו שאפשר ללמוד ממנו.",
-  before: {
-    label: "תמלול גולמי",
-    lines: [
-      "אז נדבר היום על היצע וביקוש ואיך זה קובע מחיר בשוק ואחר כך נעבור לעלות שולית ותועלת שולית וגם נדבר קצת על גמישות מחיר וזה חשוב להבין את הקשר בין כל אלה",
-    ],
-  },
-  after: {
-    label: "סיכום מבני",
-    heading: "היצע, ביקוש ומחיר שוק",
-    bullets: ["היצע וביקוש קובעים שיווי משקל", "עלות שולית מול תועלת שולית", "גמישות מחיר משפיעה על שיווי המשקל"],
-  },
-} as const;
-
+// Consumed by ProductDemo.tsx's numbered step list — title only, no eyebrow/
+// heading of its own (that section reuses ProductDemo's heading instead).
 export const howItWorks = {
-  eyebrow: "איך זה עובד",
-  title: "שלושה שלבים, בלי לשנות הרגלים",
   steps: [
-    {
-      title: "מתקינים את B Notes",
-      body: "הוספה ל-Chrome מהחנות הרשמית, בכמה שניות.",
-    },
-    {
-      title: "צופים בהרצאה כרגיל",
-      body: "התמלול מוצג בזמן אמת בזמן שההרצאה מתקדמת.",
-    },
-    {
-      title: "מקבלים סיכום מסודר",
-      body: "בסיום ההקלטה נבנה סיכום מחולק לנושאים, מוכן ללמידה.",
-    },
+    { title: "מתקינים את B Notes" },
+    { title: "צופים בהרצאה כרגיל" },
+    { title: "מקבלים סיכום מסודר" },
   ],
 } as const;
 
@@ -248,9 +206,9 @@ export const faq = {
   ],
 } as const;
 
+// Consumed by Pricing.tsx's cinematic closing bookend — title only.
 export const finalCta = {
   title: "צאו מההרצאה עם סיכום שאפשר ללמוד ממנו.",
-  body: "התקינו את B Notes ב-Chrome והתחילו מההרצאה הבאה.",
 } as const;
 
 export const footer = {
