@@ -139,7 +139,7 @@ export const exports_ = {
   formats: [
     { label: "Word", detail: "קובץ DOCX לעריכה חופשית" },
     { label: "PDF", detail: "מוכן להדפסה ולשיתוף" },
-    { label: "Google NotebookLM", detail: "ייצוא ישיר להמשך עבודה" },
+    { label: "Google NotebookLM", detail: "מקור מצוין להזנה ל-NotebookLM" },
   ],
 } as const;
 
@@ -157,7 +157,7 @@ export const pricing = {
   valuePoints: [
     "תמלול חי במהלך ההרצאה",
     "סיכום מסודר בסיום כל הקלטה",
-    "ייצוא ל-Word, PDF ו-NotebookLM",
+    "ייצוא ל-Word ו-PDF, ומשלים מעולה את NotebookLM",
     "עברית ואנגלית",
   ],
 } as const;
@@ -193,7 +193,8 @@ export const faq = {
     },
     {
       question: "איך אפשר לייצא את הסיכום?",
-      answer: "ל-Word (DOCX), ל-PDF, ול-Google NotebookLM.",
+      answer:
+        "ל-Word (DOCX) ול-PDF. הסיכום המיוצא הוא גם מקור מצוין להזנה ל-NotebookLM — B Notes לא מייצא אליו ישירות, אבל התוצר משלים אותו מעולה.",
     },
     {
       question: "מה קורה עם הפרטיות שלי?",
