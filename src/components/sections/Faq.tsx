@@ -23,7 +23,7 @@ export function Faq() {
                 {item.question}
                 <span
                   aria-hidden="true"
-                  className="inline-flex size-7 shrink-0 items-center justify-center rounded-full border border-rule text-lg text-ink-soft transition-all group-open:rotate-45 group-open:border-accent/40 group-open:text-accent"
+                  className="inline-flex size-7 shrink-0 items-center justify-center rounded-full border border-rule text-lg text-ink-soft transition-[color,border-color,transform] group-open:rotate-45 group-open:border-accent/40 group-open:text-accent"
                 >
                   +
                 </span>

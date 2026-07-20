@@ -1,5 +1,16 @@
 import { expect, test } from "@playwright/test";
 
+test("the landing page stays concise", async ({ page, viewport }) => {
+  await page.goto("/");
+
+  await expect(page.locator("main > section")).toHaveCount(4);
+  const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+  const viewportHeight = viewport?.height ?? 900;
+  const maximumScreens = (viewport?.width ?? 0) < 768 ? 6.5 : 4.5;
+
+  expect(pageHeight / viewportHeight).toBeLessThanOrEqual(maximumScreens);
+});
+
 test("no horizontal overflow", async ({ page, viewport }) => {
   await page.goto("/");
   await page.waitForLoadState("networkidle");
@@ -82,9 +93,11 @@ test("meaningful part of the hero transformation is within the mobile fold", asy
   const box = await scene.boundingBox();
   expect(box).not.toBeNull();
   expect(box!.y).toBeLessThan(844);
-  await expect(
-    scene.getByText("הרצאה אונליין", { exact: true }),
-  ).toBeVisible();
+  const flowLabel = scene.getByText("הרצאה אונליין", { exact: true });
+  await expect(flowLabel).toBeVisible();
+  const flowBox = await flowLabel.boundingBox();
+  expect(flowBox).not.toBeNull();
+  expect(flowBox!.y + flowBox!.height).toBeLessThanOrEqual(844);
 });
 
 test("navigation remains usable at intermediate widths", async ({ page }) => {

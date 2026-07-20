@@ -50,8 +50,10 @@ test.describe("mobile menu", () => {
     await expect(trigger).toBeVisible();
     await trigger.click();
 
-    const menu = page.locator("nav#" + (await getPanelId(page)));
+    const menu = page.locator("#" + (await getPanelId(page)) + " nav");
     await expect(menu).toBeVisible();
+    await expect(page.locator("main")).toHaveAttribute("inert", "");
+    await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
     for (const item of NAV_ITEMS) {
       await expect(
         menu.getByRole("link", { name: item.label, exact: true }),
@@ -61,6 +63,8 @@ test.describe("mobile menu", () => {
     // Clicking a link closes the menu and reaches the section.
     await menu.getByRole("link", { name: "מחיר", exact: true }).click();
     await expect(menu).not.toBeVisible();
+    await expect(page.locator("main")).not.toHaveAttribute("inert", "");
+    await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
     await page.waitForTimeout(150);
     const pricingVisible = await page.evaluate(() => {
       const rect = document.querySelector("#pricing")!.getBoundingClientRect();
@@ -78,19 +82,18 @@ test.describe("mobile menu", () => {
     await trigger.click();
     await expect(trigger).toHaveAttribute("aria-expanded", "true");
 
-    // Focus can move into the menu.
+    // Opening moves focus into the dialog, and Tab remains inside it.
+    const menu = page.locator("#" + (await getPanelId(page)) + " nav");
+    const firstLink = menu.getByRole("link", { name: "איך זה עובד", exact: true });
+    const lastLink = menu.getByRole("link", { name: "שאלות", exact: true });
+    await expect(firstLink).toBeFocused();
+    await lastLink.focus();
     await page.keyboard.press("Tab");
-    const focusInMenu = await page.evaluate(() => {
-      const active = document.activeElement;
-      return Boolean(
-        active?.closest("nav") ||
-          active?.getAttribute("aria-label") === "סגירת תפריט",
-      );
-    });
-    expect(focusInMenu).toBe(true);
+    await expect(firstLink).toBeFocused();
 
     await page.keyboard.press("Escape");
     await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    await expect(page.locator("main")).not.toHaveAttribute("inert", "");
     // Focus must return to the trigger — not fall back to <body>.
     await expect(trigger).toBeFocused();
   });

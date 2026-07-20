@@ -2,10 +2,7 @@ import { Logo } from "@/components/ui/Logo";
 import { Container } from "@/components/ui/Container";
 import { footer, links } from "@/lib/content";
 
-/*
- * Dark cinematic footer — continues the FinalCta night stage so the page
- * closes inside the same world it opened in.
- */
+/* A short dark close, right after Pricing's own cinematic bookend strip. */
 export function Footer() {
   return (
     <footer className="on-dark border-t border-[#2a2a2e] bg-[#141417]">

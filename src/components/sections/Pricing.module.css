@@ -1,0 +1,145 @@
+.offerCard {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgb(244 240 229 / 28%);
+  border-radius: 1.75rem 0.35rem 1.75rem 1.75rem;
+  padding: 2rem;
+  text-align: start;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2.45rem,
+      rgb(36 79 118 / 4%) 2.5rem
+    ),
+    radial-gradient(circle at 88% 4%, rgb(229 185 75 / 9%), transparent 27%),
+    #fcfcfa;
+  box-shadow:
+    0 -1px 0 rgb(229 185 75 / 35%),
+    0 0 90px rgb(244 240 229 / 13%),
+    0 36px 75px rgb(0 0 0 / 48%);
+}
+
+.offerCard::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 0.35rem;
+  background: linear-gradient(to left, #9dc2d6, #244f76 58%, #e5b94b);
+}
+
+.offerCard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.8rem;
+  height: 2.8rem;
+  background: linear-gradient(135deg, #ddd6c8 0 48%, #f5f1e7 50% 100%);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  box-shadow: 1px 1px 6px rgb(23 25 21 / 13%);
+}
+
+.trialMark {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+}
+
+/* Kept flush with the text's own inline bounds (inset-inline: 0) rather
+   than overshooting it: a negative inset here reads as a bolder highlight,
+   but its overshoot is scrollable overflow that propagates up through
+   every unclipped ancestor's scrollWidth — including the <p> a11y/layout
+   test checks — regardless of which element is its positioning context.
+   The extra emphasis instead comes from the taller, more opaque stroke. */
+.trialMark::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-inline: 0;
+  bottom: -0.1rem;
+  height: 1.5rem;
+  transform: rotate(-0.7deg);
+  background: rgb(229 185 75 / 72%);
+  clip-path: polygon(1% 14%, 99% 2%, 100% 88%, 0 100%);
+}
+
+.priceBlock {
+  margin-top: 1.35rem;
+  padding-block: 1.1rem 1rem;
+  border-block: 1px solid var(--color-rule);
+  text-align: center;
+}
+
+.priceLockup {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: var(--color-ink);
+}
+
+/* A friendlier numeral treatment for the price itself: the warm rounded
+   body sans (Assistant) instead of the display serif used for headlines —
+   softer and more approachable at this size than a heavy serif numeral. */
+.currency {
+  margin-top: 0.7rem;
+  margin-inline-end: 0.3rem;
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.amount {
+  font-family: var(--font-body);
+  font-size: clamp(3.2rem, 6vw, 4rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+}
+
+.valueList {
+  margin-top: 0.55rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.valueItem {
+  display: flex;
+  min-height: 2.65rem;
+  align-items: center;
+  gap: 0.7rem;
+  border-bottom: 1px solid rgb(212 207 195 / 72%);
+  color: var(--color-ink-soft);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.valueItem:last-child {
+  border-bottom: 0;
+}
+
+.check {
+  display: inline-flex;
+  width: 1.45rem;
+  height: 1.45rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(36 79 118 / 24%);
+  border-radius: 0.45rem;
+  background: rgb(36 79 118 / 8%);
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+@media (max-width: 639px) {
+  .offerCard {
+    padding: 1.5rem;
+  }
+}

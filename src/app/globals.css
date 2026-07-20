@@ -51,6 +51,13 @@ body {
   font-family: var(--font-body);
 }
 
+a,
+button,
+summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgb(36 79 118 / 16%);
+}
+
 .font-display {
   font-family: var(--font-display);
 }
@@ -100,6 +107,17 @@ summary::-webkit-details-marker {
   outline-color: var(--color-digital);
 }
 
+/* The cinematic bookend backdrop — the close-up summary-paper frame that
+   closes the loop the hero opened. Quoted-url arbitrary Tailwind utilities
+   proved fragile here (cache corruption + Tailwind scans even comments for
+   class candidates — never spell such a utility anywhere in source), hence
+   a plain class. */
+.finale-backdrop {
+  background-image: url("/media/sections/finale-paper.webp");
+  background-size: cover;
+  background-position: 50% 40%;
+}
+
 /* Adaptive header, floating transparent over the dark hero. Scoped utility
    overrides flip the chrome to light while at the top of the page. */
 .site-header.at-top .text-ink {
@@ -141,15 +159,6 @@ summary::-webkit-details-marker {
   pointer-events: none;
   opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* FinalCta backdrop as a plain class. Quoted-url arbitrary Tailwind utilities
-   proved fragile here (cache corruption + Tailwind scans even comments for
-   class candidates — never spell such a utility anywhere in source). */
-.finale-backdrop {
-  background-image: url("/media/sections/finale-paper.webp");
-  background-size: cover;
-  background-position: 50% 45%;
 }
 
 /* Generic dark-surface overrides (footer and other night surfaces). */
@@ -334,7 +343,5 @@ summary::-webkit-details-marker {
     transition-duration: 0.001ms !important;
   }
 }
-
-
 
 

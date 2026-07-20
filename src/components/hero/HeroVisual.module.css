@@ -88,6 +88,13 @@
   background-repeat: no-repeat;
 }
 
+/* The persistent layer doubles as the lazy-load observation target. */
+.motionLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
 /* The motion layer (client-gated <video>) sits above the poster frame. */
 .sceneVideo {
   position: absolute;
@@ -240,10 +247,12 @@
   }
 
   .flowBar {
+    top: 14px;
     gap: 6px;
     padding: 6px 12px;
     font-size: 0.6rem;
-    bottom: 14px;
+    bottom: auto;
+    animation-delay: 0.5s;
   }
 }
 

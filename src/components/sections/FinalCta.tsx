@@ -23,7 +23,7 @@ export function FinalCta() {
       />
 
       <Container className="relative z-10 text-center">
-        <h2 className="mx-auto max-w-2xl text-3xl font-bold leading-tight text-paper sm:text-4xl">
+        <h2 className="mx-auto max-w-2xl text-3xl font-bold leading-tight text-paper [text-wrap:balance] sm:text-4xl">
           {finalCta.title}
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-[#c9c2b2]">{finalCta.body}</p>
@@ -33,6 +33,8 @@ export function FinalCta() {
             href={links.chromeStore}
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-event="chrome_store_click"
+            data-analytics-placement="final-cta"
             showChromeIcon
             microcopy={cta.microcopy}
           >

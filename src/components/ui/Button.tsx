@@ -16,7 +16,7 @@ export function Button({
   ...props
 }: ButtonProps & { children: ReactNode }) {
   const base =
-    "group inline-flex min-h-11 flex-col items-center justify-center gap-0.5 rounded-xl px-6 py-2.5 text-base font-semibold transition-all duration-200";
+    "group inline-flex min-h-11 touch-manipulation flex-col items-center justify-center gap-0.5 rounded-xl px-6 py-2.5 text-base font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-200";
 
   const styles =
     variant === "primary"

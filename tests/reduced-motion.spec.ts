@@ -77,3 +77,8 @@ test("no content is hidden behind animation completion", async ({ page }) => {
     expect(parseFloat(opacity)).toBeGreaterThan(0.99);
   }
 });
+
+test("reduced motion never mounts decorative videos", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("video")).toHaveCount(0);
+});

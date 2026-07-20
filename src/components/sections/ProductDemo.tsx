@@ -1,87 +1,89 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { productDemo } from "@/lib/content";
+import { howItWorks, productDemo } from "@/lib/content";
 
 /*
- * Real product proof on a night stage: the actual extension capture floats
- * as a glowing 3D panel over the dark world (perspective tilt that straightens
- * on hover), beside "what you're seeing" markers as dark glass cards.
- * The screenshot itself stays untouched — truth in a cinematic frame.
+ * One proof section, one focal point: the real extension screenshot beside
+ * the three-step setup. The "transcript → structured summary" contrast used
+ * to repeat as a fourth block here (a second bright panel competing with the
+ * screenshot) — but the hero already shows it, the heading already says it,
+ * and the screenshot already demonstrates it, so that block was cut rather
+ * than compressed (density fix, round 6). One bright object on the dark
+ * stage, generous room around it.
  */
 export function ProductDemo() {
   return (
-    <section className="hero-cinema on-dark relative overflow-hidden border-b border-[#2a2a2e] py-16 sm:py-20 lg:py-24">
+    <section
+      id="how-it-works"
+      className="hero-cinema on-dark relative overflow-hidden border-b border-[#2a2a2e] py-14 sm:py-16 lg:py-20"
+    >
       <Container className="relative z-10">
+        {/* No body line here: it only restated the title and the three
+            steps right below it — cut rather than kept as filler. */}
         <SectionHeading
           eyebrow={productDemo.eyebrow}
-          title={productDemo.title}
-          body={productDemo.body}
+          title="בזמן ההרצאה: תמלול חי. בסופה: סיכום מסודר."
+          align="center"
         />
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-start">
-          <Reveal className="order-1 lg:order-none lg:self-stretch">
-            {/* Distribute the cards across the panel's full height so the
-                night stage has no dead gap below the column. */}
-            <ul className="flex flex-col gap-4 lg:h-full lg:justify-between">
-              {productDemo.highlights.map((item, index) => (
-                <li
-                  key={item.title}
-                  className="flex items-start gap-4 rounded-xl border border-[#fcfcfa]/10 bg-[#fcfcfa]/5 p-4 backdrop-brightness-110"
-                >
-                  <span
-                    className={`mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold ${
-                      index === productDemo.highlights.length - 1
-                        ? "border border-marker/70 bg-marker/20 text-marker"
-                        : "border border-digital/40 bg-digital/10 text-digital"
-                    }`}
-                  >
-                    {index + 1}
-                  </span>
-                  <div>
-                    <p className="font-display text-base font-bold text-paper">
-                      {item.title}
-                    </p>
-                    <p className="mt-1 text-sm leading-relaxed text-[#c9c2b2]">
-                      {item.detail}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal delay={120}>
-            {/* 3D floating panel: tilted in perspective, straightens on hover */}
+        <div className="mt-12 grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-20">
+          <Reveal>
+            {/* Tilted in perspective, straightens on hover — the panel reads
+                as a physical object resting in the dark stage, not a flat
+                cutout. Camera-locked otherwise, per the motion discipline. */}
             <div className="group mx-auto max-w-md [perspective:1400px]">
-              <div className="overflow-hidden rounded-2xl border border-digital/25 bg-[#14161a] shadow-[0_0_90px_rgb(252_252_250/16%),0_40px_80px_rgb(0_0_0/50%)] transition-transform duration-700 ease-out [transform:rotateY(9deg)_rotateX(2deg)] group-hover:[transform:rotateY(0deg)_rotateX(0deg)]">
+              <div className="overflow-hidden rounded-2xl border border-digital/25 bg-[#14161a] shadow-[0_0_80px_rgb(252_252_250/13%),0_40px_80px_rgb(0_0_0/55%)] transition-transform duration-700 ease-out [transform:rotateY(17deg)_rotateX(4deg)] group-hover:[transform:rotateY(0deg)_rotateX(0deg)]">
                 <div className="flex items-center gap-2 border-b border-[#2b2f36] bg-[#191c21] px-4 py-3">
-                  <span className="size-2 rounded-full bg-digital opacity-60" />
-                  <span className="size-2 rounded-full bg-digital opacity-40" />
-                  <span className="size-2 rounded-full bg-digital opacity-30" />
-                  <span className="ms-2 text-xs text-[#c9c2b2]">
-                    B Notes — תמלול חי
-                  </span>
+                  <span aria-hidden="true" className="size-2 rounded-full bg-digital opacity-60" />
+                  <span aria-hidden="true" className="size-2 rounded-full bg-digital opacity-40" />
+                  <span aria-hidden="true" className="size-2 rounded-full bg-digital opacity-30" />
+                  <span className="ms-2 text-xs text-[#c9c2b2]">B Notes — תמלול חי</span>
                 </div>
-
-                {/* eslint-disable-next-line @next/next/no-img-element -- static asset, fixed size, no optimization pipeline needed */}
-                <img
+                <Image
                   src="/media/extension-live-transcript.png"
                   alt={productDemo.screenshotAlt}
                   width={687}
                   height={739}
+                  sizes="(min-width: 1024px) 430px, calc(100vw - 48px)"
+                  loading="lazy"
                   className="block w-full saturate-[.92]"
                 />
               </div>
-              {/* light the panel throws on the desk */}
+              {/* light the panel throws on the desk beneath it */}
               <div
                 aria-hidden="true"
-                className="mx-auto mt-2 h-6 w-3/4 rounded-[100%] bg-[#fcfcfa]/15 blur-xl"
+                className="mx-auto mt-2 h-6 w-3/4 rounded-[100%] bg-[#fcfcfa]/12 blur-xl"
               />
+              <p className="mt-2 text-center text-xs font-medium text-[#c9c2b2]">
+                {productDemo.realLabel}
+              </p>
             </div>
-            <p className="mt-4 text-center text-sm font-medium text-[#c9c2b2]">
-              {productDemo.realLabel}
-            </p>
+          </Reveal>
+
+          <Reveal delay={100}>
+            {/* No boxes, no body sentences: the numbered dot plus a hairline
+                between items is enough separation, and the three titles
+                already read as a complete flow (install → watch → get
+                summary) — the explanatory sentence under each one was
+                restating the section title one more time (text-density
+                fix, round 7). */}
+            <ol className="flex flex-col">
+              {howItWorks.steps.map((step, index) => (
+                <li
+                  key={step.title}
+                  className="flex items-center gap-4 border-b border-[#fcfcfa]/10 py-4 first:pt-0 last:border-b-0 last:pb-0"
+                >
+                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl border border-digital/35 bg-digital/10 font-display text-lg font-bold text-digital">
+                    {index + 1}
+                  </span>
+                  <h3 className="font-display text-xl font-bold text-paper">
+                    {step.title}
+                  </h3>
+                </li>
+              ))}
+            </ol>
           </Reveal>
         </div>
       </Container>

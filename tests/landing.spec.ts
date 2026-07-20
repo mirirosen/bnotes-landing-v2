@@ -23,7 +23,16 @@ test.describe("document and metadata", () => {
     const headings = page.locator("h1");
     await expect(headings).toHaveCount(1);
     await expect(headings.first()).toBeVisible();
-    await expect(headings.first()).toHaveText("ההרצאה מתקדמת. החומר כבר מתארגן.");
+    await expect(headings.first()).toHaveText(
+      "B Notes מתמלל את ההרצאה בזמן אמת ומסכם אותה לפי נושאים.",
+    );
+  });
+
+  test("hero explains the product before the primary action", async ({ page }) => {
+    await page.goto("/");
+    const hero = page.locator("main section").first();
+    await expect(hero).toContainText("מתמלל את ההרצאה בזמן אמת");
+    await expect(hero).toContainText("מסכם אותה לפי נושאים");
   });
 
   test("no duplicate element ids", async ({ page }) => {
@@ -61,50 +70,44 @@ test.describe("document and metadata", () => {
 });
 
 test.describe("primary CTA", () => {
-  test("hero CTA above the fold with correct name and URL", async ({ page }, testInfo) => {
-    await page.goto("/");
-    const heroCta = page
-      .locator("main")
-      .getByRole("link", { name: /התקינו את B Notes ב־Chrome/ })
-      .first();
-    await expect(heroCta).toBeVisible();
-    await expect(heroCta).toHaveAttribute("href", CHROME_STORE_URL);
-    await expect(heroCta).toHaveAttribute("target", "_blank");
-    await expect(heroCta).toHaveAttribute("rel", /noopener/);
-
-    const box = await heroCta.boundingBox();
-    expect(box).not.toBeNull();
-    const foldHeight = testInfo.project.name === "mobile" ? 844 : 900;
-    expect(box!.y + box!.height).toBeLessThanOrEqual(foldHeight);
-  });
-
-  test("header CTA present and correct", async ({ page }, testInfo) => {
+  // The hero no longer carries its own CTA — the header's is the single
+  // above-the-fold action on every breakpoint now (see Header.tsx), so it
+  // absorbs the fold-position/target/rel checks the old "hero CTA" test
+  // used to own.
+  test("header CTA above the fold with correct name, URL, and attributes", async ({
+    page,
+  }, testInfo) => {
     await page.goto("/");
     const label =
       testInfo.project.name === "mobile" ? "התקנה" : /התקינו את B Notes ב־Chrome/;
     const headerCta = page.locator("header").getByRole("link", { name: label });
 
-    if (testInfo.project.name === "mobile") {
-      // Over the dark hero the mobile header CTA is intentionally hidden
-      // (the hero CTA sits right below it); it appears once the header
-      // switches to paper-glass on scroll.
-      await expect(headerCta).toBeHidden();
-      await page.mouse.wheel(0, 400);
-      await expect(headerCta).toBeVisible();
-    } else {
-      await expect(headerCta).toBeVisible();
-    }
+    await expect(headerCta).toBeVisible();
     await expect(headerCta).toHaveAttribute("href", CHROME_STORE_URL);
+    await expect(headerCta).toHaveAttribute("target", "_blank");
+    await expect(headerCta).toHaveAttribute("rel", /noopener/);
+
+    const box = await headerCta.boundingBox();
+    expect(box).not.toBeNull();
+    const foldHeight = testInfo.project.name === "mobile" ? 844 : 900;
+    expect(box!.y + box!.height).toBeLessThanOrEqual(foldHeight);
+  });
+
+  test("every primary CTA exposes a stable measurement placement", async ({ page }) => {
+    await page.goto("/");
+    const tracked = page.locator('[data-analytics-event="chrome_store_click"]');
+    await expect(tracked).toHaveCount(3);
+    const placements = await tracked.evaluateAll((elements) =>
+      elements.map((element) => element.getAttribute("data-analytics-placement")),
+    );
+    expect(placements.sort()).toEqual(["final-bookend", "header", "pricing"]);
   });
 
   test("CTA keyboard focus is visible", async ({ page }) => {
     await page.goto("/");
-    const heroCta = page
-      .locator("main")
-      .getByRole("link", { name: /התקינו את B Notes ב־Chrome/ })
-      .first();
-    await heroCta.focus();
-    const outline = await heroCta.evaluate((el) => {
+    const headerCta = page.locator("header a.header-cta");
+    await headerCta.focus();
+    const outline = await headerCta.evaluate((el) => {
       const style = getComputedStyle(el);
       return { width: style.outlineWidth, style: style.outlineStyle };
     });
@@ -121,11 +124,8 @@ test.describe("primary CTA", () => {
       route.fulfill({ status: 200, contentType: "text/html", body: "<html>store</html>" }),
     );
     await page.goto("/");
-    const heroCta = page
-      .locator("main")
-      .getByRole("link", { name: /התקינו את B Notes ב־Chrome/ })
-      .first();
-    const [popup] = await Promise.all([page.waitForEvent("popup"), heroCta.click()]);
+    const headerCta = page.locator("header a.header-cta");
+    const [popup] = await Promise.all([page.waitForEvent("popup"), headerCta.click()]);
     await popup.waitForLoadState("domcontentloaded");
     expect(popup.url()).toBe(CHROME_STORE_URL);
     await popup.close();
@@ -139,7 +139,7 @@ test.describe("product content", () => {
 
     expect(bodyText).not.toContain("Lectify");
     expect(bodyText).toContain("B Notes");
-    expect(bodyText).toContain("₪9.90");
+    expect(bodyText).toContain("₪23.90");
     expect(bodyText).toContain("7 ימי התנסות");
     expect(bodyText).toContain("ביטול בכל עת");
 

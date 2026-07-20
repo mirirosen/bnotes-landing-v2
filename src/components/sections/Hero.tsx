@@ -1,9 +1,8 @@
 import { HeroVisual } from "@/components/hero/HeroVisual";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { TrustLine } from "@/components/ui/TrustLine";
-import { cta, hero, links } from "@/lib/content";
+import { hero } from "@/lib/content";
 
 /*
  * Cinematic hero — "שולחן הלימוד: החוט שמתארגן".
@@ -15,31 +14,23 @@ export function Hero() {
   return (
     <section className="hero-cinema hero-pull relative overflow-hidden border-b border-rule md:flex md:min-h-svh md:flex-col">
       <Container className="relative z-10 pt-6 sm:pt-8 md:pt-[14svh]">
-        <div className="hero-copy max-w-2xl">
+        {/* Desktop: pushed to the physically-left side of the scene — the
+            open, uncluttered stretch above the paper — instead of sitting
+            over the laptop. Mobile is unaffected (copy stacks above the
+            visual in normal flow there). */}
+        <div className="hero-copy max-w-2xl md:ms-auto">
           <Eyebrow tone="light">{hero.eyebrow}</Eyebrow>
-          <h1 className="mt-2 text-[1.7rem] font-bold leading-[1.18] tracking-tight text-paper sm:mt-3 sm:text-4xl lg:text-[2.7rem]">
-            {hero.headline}
+          {/* The scene-setting headline ("ההרצאה מתקדמת...") was cut — it
+              read as mood, not information. The one sentence that actually
+              says what the product does is now the h1 itself. */}
+          <h1 className="mt-2 max-w-xl text-[1.4rem] font-bold leading-[1.3] tracking-tight text-paper [text-wrap:pretty] sm:mt-3 sm:text-[1.75rem] lg:text-[2rem]">
+            {hero.subheadline}
           </h1>
 
-          <div className="mt-5 flex flex-col items-start gap-2.5 sm:mt-6 sm:flex-row sm:items-center sm:gap-7">
-            <Button
-              href={links.chromeStore}
-              target="_blank"
-              rel="noopener noreferrer"
-              showChromeIcon
-              microcopy={cta.microcopy}
-            >
-              {cta.primary}
-            </Button>
-            <a
-              href="#how-it-works"
-              className="min-h-11 inline-flex items-center text-sm font-medium text-[#c9c2b2] underline decoration-[#4a4436] decoration-2 underline-offset-4 hover:text-digital"
-            >
-              {cta.secondary} ↓
-            </a>
-          </div>
-
-          <TrustLine tone="light" className="mt-4 sm:mt-5" />
+          {/* No CTA button/secondary link here anymore — the header's own
+              CTA is now the single above-the-fold action on every
+              breakpoint (see Header.tsx), so the hero doesn't repeat it. */}
+          <TrustLine tone="light" className="mt-5 sm:mt-6" />
         </div>
       </Container>
 

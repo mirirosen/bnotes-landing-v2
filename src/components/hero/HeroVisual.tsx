@@ -60,6 +60,7 @@ export function HeroVisual() {
               src="/media/hero/hero-motion-camera-2k.mp4"
               poster="/media/hero/hero-frame.webp"
               mode="once-fade"
+              loading="eager"
             />
           </div>
           <FlowLabels />
@@ -74,6 +75,7 @@ export function HeroVisual() {
             query={MOBILE_MOTION_QUERY}
             src="/media/hero/hero-motion-portrait.mp4"
             poster="/media/hero/hero-frame-portrait.webp"
+            loading="eager"
           />
           <FlowLabels />
         </div>

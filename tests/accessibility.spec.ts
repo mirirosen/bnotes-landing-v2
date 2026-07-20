@@ -77,7 +77,7 @@ test("no information conveyed by color alone in trust line", async ({ page }) =>
   // Trust line must be real text (readable without color perception).
   const trust = page.getByRole("note").first();
   const text = (await trust.innerText()).replace(/\s+/g, " ");
-  expect(text).toContain("₪9.90");
+  expect(text).toContain("₪23.90");
   expect(text).toContain("ביטול בכל עת");
 });
 

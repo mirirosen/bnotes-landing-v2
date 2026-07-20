@@ -19,13 +19,17 @@ export function HeroMotion({
   src,
   poster,
   mode = "loop",
+  loading = "lazy",
 }: {
   query: string;
   src: string;
   poster: string;
   mode?: "loop" | "once-fade";
+  loading?: "eager" | "lazy";
 }) {
   const [ended, setEnded] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(loading === "eager");
+  const layerRef = useRef<HTMLSpanElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const subscribe = useMemo(
@@ -43,10 +47,35 @@ export function HeroMotion({
     () => false,
   );
 
+  // Below-fold motion does not create a <video> (and therefore cannot fetch
+  // its source) until the stage is close to the viewport. The hero opts into
+  // eager loading explicitly so its authored opening still starts at once.
+  useEffect(() => {
+    const layer = layerRef.current;
+    if (!enabled || shouldLoad || !layer) return;
+
+    // IntersectionObserver is available in every browser supported by Next.js.
+    // If it is absent, the static poster remains the intentional fallback.
+    if (typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px", threshold: 0 },
+    );
+
+    observer.observe(layer);
+    return () => observer.disconnect();
+  }, [enabled, shouldLoad]);
+
   // Battery + calm discipline: pause looping videos while off-screen.
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !enabled) return;
+    if (!video || !enabled || !shouldLoad) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -59,24 +88,27 @@ export function HeroMotion({
     );
     observer.observe(video);
     return () => observer.disconnect();
-  }, [enabled]);
+  }, [enabled, shouldLoad]);
 
   if (!enabled) return null;
 
   return (
-    <video
-      ref={videoRef}
-      className={`${styles.sceneVideo} ${ended ? styles.sceneVideoResting : ""}`}
-      autoPlay
-      muted
-      loop={mode === "loop"}
-      playsInline
-      preload="auto"
-      poster={poster}
-      aria-hidden="true"
-      onEnded={mode === "once-fade" ? () => setEnded(true) : undefined}
-    >
-      <source src={src} type="video/mp4" />
-    </video>
+    <span ref={layerRef} className={styles.motionLayer} aria-hidden="true">
+      {shouldLoad ? (
+        <video
+          ref={videoRef}
+          className={`${styles.sceneVideo} ${ended ? styles.sceneVideoResting : ""}`}
+          autoPlay
+          muted
+          loop={mode === "loop"}
+          playsInline
+          preload={loading === "eager" ? "auto" : "none"}
+          poster={poster}
+          onEnded={mode === "once-fade" ? () => setEnded(true) : undefined}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      ) : null}
+    </span>
   );
 }

@@ -56,13 +56,16 @@ export function Header() {
             href={links.chromeStore}
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-event="chrome_store_click"
+            data-analytics-placement="header"
             showChromeIcon
             className={`header-cta max-sm:[&_svg]:hidden !min-h-10 !rounded-lg !px-3 !py-1.5 !text-xs sm:!min-h-11 sm:!rounded-xl sm:!px-5 sm:!text-sm ${
               atTop
-                ? // Over the dark hero: one loud CTA is enough (the hero's own).
-                  // Quiet dark-glass outline on desktop (styled by the
-                  // .site-header.at-top .header-cta rule), hidden on mobile.
-                  "max-sm:hidden"
+                ? // Over the dark hero: this is now the ONLY CTA above the
+                  // fold on every breakpoint (the hero itself no longer has
+                  // one) — always visible, quiet dark-glass styling comes
+                  // from the .site-header.at-top .header-cta rule.
+                  ""
                 : "!border !border-accent/35 !bg-transparent !text-accent !shadow-none hover:!bg-accent/8 sm:!border sm:!border-[#9dc2d6]/30 sm:!bg-gradient-to-b sm:!from-[#2e618e] sm:!to-[#1e4266] sm:!text-interface sm:!shadow-[0_6px_22px_rgb(36_79_118/45%),inset_0_1px_0_rgb(255_255_255/14%)] sm:hover:!from-[#356c9c] sm:hover:!to-[#245078]"
             }`}
           >

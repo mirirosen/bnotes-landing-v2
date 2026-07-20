@@ -25,20 +25,17 @@ export const cta = {
   primary: "התקינו את B Notes ב־Chrome",
   headerMobile: "התקנה",
   microcopy: "התקנה דרך חנות Chrome הרשמית",
-  secondary: "איך זה עובד",
 } as const;
 
 export const trustLine =
-  "7 ימי התנסות ללא תשלום · לאחר מכן ₪9.90 לחודש · ביטול בכל עת";
+  "7 ימי התנסות ללא תשלום · לאחר מכן ₪23.90 לחודש · ביטול בכל עת";
 
 export const trustLineMobile =
-  "7 ימים ללא תשלום · לאחר מכן ₪9.90 לחודש · ביטול בכל עת";
+  "7 ימים ללא תשלום · לאחר מכן ₪23.90 לחודש · ביטול בכל עת";
 
 export const hero = {
-  eyebrow: "תוסף Chrome לסטודנטים בהרצאות אונליין",
-  headline: "ההרצאה מתקדמת. החומר כבר מתארגן.",
-  subheadline:
-    "B Notes מתמלל את ההרצאה בזמן אמת והופך אותה בסיום לסיכום ברור, מחולק לנושאים ומוכן ללמידה.",
+  eyebrow: "תוסף Chrome לסטודנטים בהרצאות אונליין מוקלטות",
+  subheadline: "B Notes מתמלל את ההרצאה בזמן אמת ומסכם אותה לפי נושאים.",
 } as const;
 
 export const heroVisual = {
@@ -111,7 +108,6 @@ export const transformationFlow = {
 export const productDemo = {
   eyebrow: "המוצר בפעולה",
   title: "כך נראה B Notes בזמן הרצאה",
-  body: "תמלול חי בזמן ההקלטה, לצד היסטוריה, שיתוף ושאלות על החומר — ישירות בתוך הדפדפן.",
   realLabel: "צילום מסך אמיתי מתוך התוסף",
   screenshotAlt:
     "ממשק התוסף B Notes בזמן הקלטת הרצאה: תמלול חי בעברית, יתרת דקות, כרטיסיות תמלול חי והיסטוריה, וכפתורי הקלטה, השהיה ועצירה",
@@ -192,7 +188,7 @@ export const pricing = {
   trialDetail: "ללא תשלום",
   // U+200A hair space after ₪ — in the display serif the glyph otherwise
   // reads as the letter ש against the digits.
-  priceLabel: "₪ 9.90",
+  priceLabel: "₪ 23.90",
   priceDetail: "לחודש, לאחר תקופת ההתנסות",
   cancelDetail: "ביטול בכל עת",
   // Verified claims only — each appears elsewhere on the page (demo/FAQ).
