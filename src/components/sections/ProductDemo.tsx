@@ -28,35 +28,64 @@ export function ProductDemo() {
           align="center"
         />
 
-        <div className="mt-12 grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-20">
+        <div className="mt-12 grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16">
           <Reveal>
-            {/* Tilted in perspective, straightens on hover — the panel reads
-                as a physical object resting in the dark stage, not a flat
-                cutout. Camera-locked otherwise, per the motion discipline. */}
-            <div className="group mx-auto max-w-md [perspective:1400px]">
-              <div className="overflow-hidden rounded-2xl border border-digital/25 bg-[#14161a] shadow-[0_0_80px_rgb(252_252_250/13%),0_40px_80px_rgb(0_0_0/55%)] transition-transform duration-700 ease-out [transform:rotateY(17deg)_rotateX(4deg)] group-hover:[transform:rotateY(0deg)_rotateX(0deg)]">
-                <div className="flex items-center gap-2 border-b border-[#2b2f36] bg-[#191c21] px-4 py-3">
-                  <span aria-hidden="true" className="size-2 rounded-full bg-digital opacity-60" />
-                  <span aria-hidden="true" className="size-2 rounded-full bg-digital opacity-40" />
-                  <span aria-hidden="true" className="size-2 rounded-full bg-digital opacity-30" />
-                  <span className="ms-2 text-xs text-[#c9c2b2]">B Notes — תמלול חי</span>
+            {/* Two real screenshots side by side — recording in progress,
+                and the practice-quiz feature — instead of one. Flat and
+                straight (no perspective tilt): these are real product UI,
+                and a tilt here read as a rendering mistake rather than a
+                deliberate effect. A small hover-lift on each keeps a touch
+                of interactivity without tilting anything. */}
+            <div className="mx-auto grid max-w-lg grid-cols-2 items-start gap-3 sm:gap-4">
+              <div className="group">
+                <div className="overflow-hidden rounded-2xl border border-digital/25 bg-[#14161a] shadow-[0_0_80px_rgb(252_252_250/13%),0_40px_80px_rgb(0_0_0/55%)] transition-transform duration-500 ease-out group-hover:-translate-y-1">
+                  <div className="flex items-center gap-1.5 border-b border-[#2b2f36] bg-[#191c21] px-3 py-2.5">
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-digital opacity-60" />
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-digital opacity-40" />
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-digital opacity-30" />
+                    <span className="ms-1 truncate text-[0.65rem] text-[#c9c2b2]">{productDemo.liveLabel}</span>
+                  </div>
+                  <Image
+                    src="/media/extension-live-recording.png"
+                    alt={productDemo.liveScreenshotAlt}
+                    width={524}
+                    height={580}
+                    sizes="(min-width: 1024px) 260px, calc(50vw - 32px)"
+                    loading="lazy"
+                    className="block w-full saturate-[.92]"
+                  />
                 </div>
-                <Image
-                  src="/media/extension-live-transcript.png"
-                  alt={productDemo.screenshotAlt}
-                  width={687}
-                  height={739}
-                  sizes="(min-width: 1024px) 430px, calc(100vw - 48px)"
-                  loading="lazy"
-                  className="block w-full saturate-[.92]"
+                <div
+                  aria-hidden="true"
+                  className="mx-auto mt-2 h-5 w-3/4 rounded-[100%] bg-[#fcfcfa]/12 blur-xl"
                 />
               </div>
-              {/* light the panel throws on the desk beneath it */}
-              <div
-                aria-hidden="true"
-                className="mx-auto mt-2 h-6 w-3/4 rounded-[100%] bg-[#fcfcfa]/12 blur-xl"
-              />
-              <p className="mt-2 text-center text-xs font-medium text-[#c9c2b2]">
+
+              <div className="group">
+                <div className="overflow-hidden rounded-2xl border border-digital/25 bg-[#14161a] shadow-[0_0_80px_rgb(252_252_250/13%),0_40px_80px_rgb(0_0_0/55%)] transition-transform duration-500 ease-out group-hover:-translate-y-1">
+                  <div className="flex items-center gap-1.5 border-b border-[#2b2f36] bg-[#191c21] px-3 py-2.5">
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-digital opacity-60" />
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-digital opacity-40" />
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-digital opacity-30" />
+                    <span className="ms-1 truncate text-[0.65rem] text-[#c9c2b2]">{productDemo.quizLabel}</span>
+                  </div>
+                  <Image
+                    src="/media/extension-practice-quiz.png"
+                    alt={productDemo.quizScreenshotAlt}
+                    width={504}
+                    height={885}
+                    sizes="(min-width: 1024px) 260px, calc(50vw - 32px)"
+                    loading="lazy"
+                    className="block w-full saturate-[.92]"
+                  />
+                </div>
+                <div
+                  aria-hidden="true"
+                  className="mx-auto mt-2 h-5 w-3/4 rounded-[100%] bg-[#fcfcfa]/12 blur-xl"
+                />
+              </div>
+
+              <p className="col-span-2 mt-1 text-center text-xs font-medium text-[#c9c2b2]">
                 {productDemo.realLabel}
               </p>
             </div>

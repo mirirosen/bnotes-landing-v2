@@ -108,9 +108,13 @@ export const transformationFlow = {
 export const productDemo = {
   eyebrow: "המוצר בפעולה",
   title: "כך נראה B Notes בזמן הרצאה",
-  realLabel: "צילום מסך אמיתי מתוך התוסף",
-  screenshotAlt:
-    "ממשק התוסף B Notes בזמן הקלטת הרצאה: תמלול חי בעברית, יתרת דקות, כרטיסיות תמלול חי והיסטוריה, וכפתורי הקלטה, השהיה ועצירה",
+  realLabel: "צילומי מסך אמיתיים מתוך התוסף",
+  liveLabel: "תמלול חי",
+  liveScreenshotAlt:
+    "ממשק התוסף B Notes תוך כדי הקלטה: אינדיקטור מקליט עם טיימר רץ, כרטיסיית תמלול חי פעילה, יתרת דקות, וטקסט עברי מהרצאה בתורת הקבוצות שנכתב בזמן אמת",
+  quizLabel: "מבחן תרגול",
+  quizScreenshotAlt:
+    "בלוק 'למד מההרצאה הזו' בתוסף B Notes: כפתורי בניית מבחן תרגול והורדתו, ושאלה אמריקאית ראשונה שנענתה נכון עם הדגשה ירוקה והסבר מתוך ההרצאה",
   // Every highlight below is visible in the real capture shown beside it.
   highlights: [
     {

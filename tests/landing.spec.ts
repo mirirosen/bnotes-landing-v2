@@ -146,7 +146,7 @@ test.describe("product content", () => {
     // Honesty contract: the hero scene is described as an illustration for
     // assistive tech, and the real interface is explicitly labeled as real.
     await expect(page.locator('main .sr-only', { hasText: "איור" })).toHaveCount(1);
-    await expect(page.getByText("צילום מסך אמיתי מתוך התוסף")).toBeVisible();
+    await expect(page.getByText("צילומי מסך אמיתיים מתוך התוסף")).toBeVisible();
   });
 
   test("no fabricated proof: no ratings, review counts, or user counts", async ({
@@ -162,7 +162,7 @@ test.describe("product content", () => {
     await expect(
       page.getByRole("img", { name: /ממשק התוסף B Notes/ }),
     ).toBeVisible();
-    await expect(page.getByText("צילום מסך אמיתי מתוך התוסף")).toBeVisible();
+    await expect(page.getByText("צילומי מסך אמיתיים מתוך התוסף")).toBeVisible();
   });
 });
 

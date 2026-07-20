@@ -18,7 +18,7 @@ export function Hero() {
             open, uncluttered stretch above the paper — instead of sitting
             over the laptop. Mobile is unaffected (copy stacks above the
             visual in normal flow there). */}
-        <div className="hero-copy max-w-2xl md:ms-auto">
+        <div className="hero-copy max-w-2xl md:ms-auto md:-me-6 lg:-me-16">
           <Eyebrow tone="light">{hero.eyebrow}</Eyebrow>
           {/* The scene-setting headline ("ההרצאה מתקדמת...") was cut — it
               read as mood, not information. The one sentence that actually
